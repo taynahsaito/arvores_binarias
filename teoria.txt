@@ -1,0 +1,15 @@
+arvore binaria:
+
+uma arvore é composta por nós
+
+o começo da arvore herda dois filhos,
+a esquerda do primeiro elemento é menor ou igual que ele e a direita é maior
+a estrutura em si já é recursiva por natureza - então, os metodos também precisam ser,
+o nó não tem mais um 'proximo' nem um 'anterior' e sim um ' filho da direita' e 'filho da esquerda'
+
+o no é um ser estatico. precisamos da referencia do no para podermos 'pendurá-lo' na arvore.
+
+a cada subarvore temos uma raiz - que seria o 'pai' dos elementos que são herdados.
+a raiz é onde iniciamos a busca, então ela é o elemento de controle
+
+
