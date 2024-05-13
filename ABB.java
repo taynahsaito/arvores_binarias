@@ -33,4 +33,21 @@ public class ABB {
             }
         }
     }
+
+    // nao é override porque é uma arvore
+    public String toStringEmOrdem(){
+        if (estaVazia())
+            return "arvore vazia";
+        else
+            return toStringEmOrdemRec(raiz);
+    }
+    //a inserção dos elementos é feito pela lógica mas depois da varredura da arvore, os elementos são retornados todos ordenados.
+    //faz a varredura da estrutura
+    String toStringEmOrdemRec (No atual){
+        if(atual == null)
+            return "";
+        return toStringEmOrdemRec(atual.getEsquerda()) + // busca tudo que tenho na esquerda
+               atual.getInfo() + " " + //pega a info da raiz
+               toStringEmOrdemRec(atual.getDireita()); //busca tudo que tenho na direita
+    }
 }
