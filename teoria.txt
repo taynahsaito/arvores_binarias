@@ -20,4 +20,4 @@ o no é um ser estatico. precisamos da referencia do no para podermos 'pendurá-
 a cada subarvore temos uma raiz - que seria o 'pai' dos elementos que são herdados.
 a raiz é onde iniciamos a busca, então ela é o elemento de controle
 
-
+cada filho

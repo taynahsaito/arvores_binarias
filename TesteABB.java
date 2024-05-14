@@ -10,5 +10,6 @@ public class TesteABB {
             abb.insere(num);
         }
         System.out.println("\n" + abb.toStringEmOrdem());
+        System.out.println("numero de nos: " + abb.numeroNos());
     }
 }

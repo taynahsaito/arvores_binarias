@@ -58,4 +58,32 @@ public class ABB {
         s = s + toStringEmOrdemRec(atual.getDireita()); //busca tudo que tenho na direita
         return s;
     }
+    public int numeroNos () {
+        if (estaVazia())
+            return 0;
+        return numeroNosRec (raiz);
+    }
+    int numeroNosRec (No atual) {
+        if (atual == null)
+            return 0;
+        return numeroNosRec(atual.getEsquerda()) + 1 + numeroNosRec(atual.getDireita());
+    }
+    //o maximo entre os niveis
+    public int altura(){
+        if (estaVazia())
+            return 0;
+        return alturaRec(raiz);
+    }
+    int alturaRec(No atual){
+        if(atual.getEsquerda() == null & atual.getDireita() == null)
+            return 0;
+        int nivelEsq = 0;
+        
+        if(atual.getEsquerda() != null)
+            nivelEsq = alturaRec(atual.getEsquerda());
+
+        int nivelDir = atual.getDireita() != null ? alturaRec(atual.getDireita()) : 0;
+
+        return nivelDir > nivelEsq ? nivelDir + 1 : nivelEsq + 1;
+    }
 }

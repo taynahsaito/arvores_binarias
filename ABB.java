@@ -50,4 +50,18 @@ public class ABB {
                atual.getInfo() + " " + //pega a info da raiz
                toStringEmOrdemRec(atual.getDireita()); //busca tudo que tenho na direita
     }
+    
+    public int numeroNos(){
+    if (estaVazia()){
+        return 0;
+    }
+    return numeroNosRec(raiz);
+    }
+
+    int numeroNosRec(No atual){
+        if (atual == null)
+            return 0;
+        //varre a subarvore da esquerda, pega a raiz que tem como quantidae 1 e varre a subarvore da direita -> soma tudo depois e essa será a quantidade de nós
+        return numeroNosRec(atual.getEsquerda()) + 1 + numeroNosRec(atual.getDireita());
+    }
 }
