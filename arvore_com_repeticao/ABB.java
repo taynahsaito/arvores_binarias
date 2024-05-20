@@ -68,12 +68,14 @@ public class ABB {
             return 0;
         return numeroNosRec(atual.getEsquerda()) + 1 + numeroNosRec(atual.getDireita());
     }
+    
     //o maximo entre os niveis
     public int altura(){
         if (estaVazia())
             return 0;
         return alturaRec(raiz);
     }
+
     int alturaRec(No atual){
         if(atual.getEsquerda() == null & atual.getDireita() == null)
             return 0;
@@ -86,4 +88,5 @@ public class ABB {
 
         return nivelDir > nivelEsq ? nivelDir + 1 : nivelEsq + 1;
     }
+
 }

@@ -1,6 +1,10 @@
 arvore binaria:
 
 uma arvore é composta por nós
+BST - binary search tree - comportadas, mas nao necessariamente balanceadas
+pode ser qualquer tipo de dado que possa ser ordenado
+definição recursiva - todo nó é a raiz de uma subarvore
+
 
 o começo da arvore herda dois filhos,
 a esquerda do primeiro elemento é menor ou igual que ele e a direita é maior - temos uma eficiencia na busca da arvore binaria, pois é dividida em duas partes. logo, ganhamos desempenho
@@ -10,7 +14,8 @@ a cada nó, temos uma lista ligada para cada posição que o elemento aparece
 como percorremos uma arvore?
 começamos pela raiz e depois os 'galhos' - parte da raiz mas não processo a informação que está nela, vai primeiro para a subarvore da esquerda visita a raiz e depois a da direita
 busca em profundidade - afunda tudo pra um lado e depois para o outro
-
+se olharmos uma a uma em um vetor- complexidade de bubble sort, pois temos que comparar todo mundo com todo mundo;
+já na abb, descartamos metade da amostra atual a cada passo, o que otimiza a busca. temos associado a cada elemento uma lista ligada (no caso do exemplo de compactação de imagem, por exemplo) que diz todas as posições que o elemento aparece
 
 a estrutura em si já é recursiva por natureza - então, os metodos também precisam ser,
 o nó não tem mais um 'proximo' nem um 'anterior' e sim um ' filho da direita' e 'filho da esquerda'

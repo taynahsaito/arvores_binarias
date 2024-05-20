@@ -15,5 +15,7 @@ public class TesteABB {
         System.out.println("\n\n" + abb.toStringEmOrdem());
         System.out.println("\nnumero de nos: " + abb.numeroNos());
         System.out.println("altura da arvore: " + abb.altura());
+
+        
     }
 }
