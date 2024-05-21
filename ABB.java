@@ -33,7 +33,7 @@ public class ABB {
             }
         }
     }
-
+    //tostring padrão retornaria o hashcode, por isso criamos o tostringemordem, para podermos visualizar a arvore
     // nao é override porque é uma arvore
     public String toStringEmOrdem(){
         if (estaVazia())
@@ -109,7 +109,7 @@ public class ABB {
     //na remoção de um elemento, precisamos saber quem é o pai dele para poder atualizar a informação
     public boolean remocao (int x){
         if (estaVazia()) return false;
-        return remocaoRec(x, raiz, null);
+        return remocaoRec(x, raiz, null, false);
     }
 
     //a remoção é um processo muito complicado, então marcamos o pai como elemento inativo
@@ -138,14 +138,34 @@ public class ABB {
                     pai.setDireita(atual.getEsquerda());
             }
             else{//se tem os dois filhos...
-
+                //o sucessor é o menor valor maior que o numero a ser removido - isso garante que o atributo esquerda seja nulo, ou seja, esteja disponivel.
+                //a subarvore da direita do nó a ser removido vai ser subarvore (direita ou esquerda) do pai e a subarvore da esquerda do no a ser removido vai ser a subarvore
+                //da esquerda do sucessor. - a subarvore direita ou esquerda depende do eFilhoEsquerdo
+                No sucessor = atual.getDireita();
+                //não precisa ser recursivo pois estou andando para um lado so 
+                while (sucessor.getEsquerda() != null) { //enquanto o sucessor tiver filhos na esquerda...
+                    sucessor = sucessor.getEsquerda(); //passa para o proximo da esquerda e achamos o sucessor
+                }
+                sucessor.setEsquerda(atual.getEsquerda());
+                //a subarvore da esquerda vai ser adotada pela subarvore do sucessor, a subarvore da direita vai ser adotada pelo pai.
+                if (pai == null) //se não tiver pai é porque é a raiz
+                    raiz = atual.getDireita();
+                else if (eFilhoEsquerdo)
+                    pai.setEsquerda(sucessor); // faz a ligação do pai com o proximo do elemento removido
+                else
+                    pai.setDireita(sucessor);
             }
+            return true; //porque conseguimos remover o elemento que estavamos procurando
         }
-        else if (x < atual.getInfo()){
-
+        else if (x < atual.getInfo()){//se o elemento que queremos remover for menor que o elemento atual que estamos...
+            eFilhoEsquerdo = true;
+            pai = atual;
+            return remocaoRec(x, atual.getEsquerda(), pai, eFilhoEsquerdo);
         }
         else { //se x for maior
-
+            eFilhoEsquerdo = false;
+            pai = atual;
+            return remocaoRec(x, atual.getDireita(), pai, eFilhoEsquerdo);
         }
     }
 }
