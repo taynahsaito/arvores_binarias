@@ -117,8 +117,10 @@ public class ABB {
         if (atual == null) return false;
         if (atual.getInfo() == x){ //se for igual ao elemento que estou procurando...
             if (atual.getEsquerda() == null & atual.getDireita() == null){ //se o nó a ser removido nao tem filhos...
+                if(atual == raiz) //se atual for a raiz, deixamos ela apenas inativa, e não removemos ela
+                raiz = null;
                 //precisamos verificar se é filho direito ou esquerdo do pai
-                if (eFilhoEsquerdo)
+                else if (eFilhoEsquerdo)
                     pai.setEsquerda(null);
                 else
                     pai.setDireita(null);
@@ -126,13 +128,17 @@ public class ABB {
             }
             //verificando qual dos dois é verdade
             else if (atual.getEsquerda() == null){ //se for nulo, só tem filho na direita
-                if (eFilhoEsquerdo)
+                if (atual == raiz)
+                    raiz = atual.getDireita();
+                else if (eFilhoEsquerdo)
                     pai.setEsquerda(atual.getDireita()); //faz a ligação do pai do atual com o filho do atual
                 else
                     pai.setDireita(atual.getDireita());
                 }
             else if (atual.getDireita() == null){ //se for nulo, só tem filho da esquerda
-                if (eFilhoEsquerdo)
+                if(atual == raiz)
+                    raiz = atual.getEsquerda();
+                else if (eFilhoEsquerdo)
                     pai.setEsquerda(atual.getEsquerda());
                 else
                     pai.setDireita(atual.getEsquerda());
@@ -141,19 +147,23 @@ public class ABB {
                 //o sucessor é o menor valor maior que o numero a ser removido - isso garante que o atributo esquerda seja nulo, ou seja, esteja disponivel.
                 //a subarvore da direita do nó a ser removido vai ser subarvore (direita ou esquerda) do pai e a subarvore da esquerda do no a ser removido vai ser a subarvore
                 //da esquerda do sucessor. - a subarvore direita ou esquerda depende do eFilhoEsquerdo
+                
+
+
+                //a subarvore da esquerda é adotada pelo sucessor - que é o menor entre os maiores
                 No sucessor = atual.getDireita();
                 //não precisa ser recursivo pois estou andando para um lado so 
                 while (sucessor.getEsquerda() != null) { //enquanto o sucessor tiver filhos na esquerda...
                     sucessor = sucessor.getEsquerda(); //passa para o proximo da esquerda e achamos o sucessor
                 }
                 sucessor.setEsquerda(atual.getEsquerda());
-                //a subarvore da esquerda vai ser adotada pela subarvore do sucessor, a subarvore da direita vai ser adotada pelo pai.
-                if (pai == null) //se não tiver pai é porque é a raiz
-                    raiz = atual.getDireita();
+                //a subarvore da direita é adotada pelo pai ou é a raiz
+                if (pai == null) 
+                    raiz = atual.getDireita(); //se o for nulo, entao a raiz é a subarvore da direira
                 else if (eFilhoEsquerdo)
-                    pai.setEsquerda(sucessor); // faz a ligação do pai com o proximo do elemento removido
+                    pai.setEsquerda(atual.getDireita()); // faz a ligação do pai com o proximo do elemento removido
                 else
-                    pai.setDireita(sucessor);
+                    pai.setDireita(atual.getDireita());//se for filho da direita, a subarvore da direita vai assumir.
             }
             return true; //porque conseguimos remover o elemento que estavamos procurando
         }

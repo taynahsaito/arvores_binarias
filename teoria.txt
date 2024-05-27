@@ -1,7 +1,7 @@
 arvore binaria:
 
 uma arvore é composta por nós
-BST - binary search tree - comportadas, mas nao necessariamente balanceadas
+BST - binary search tree - comportadas, mas nao necessariamente balanceadas - não há problemas em não ser balanceadas, o algoritmo logaritmico achata a arvore, e uma altura a mais não muda nada.
 pode ser qualquer tipo de dado que possa ser ordenado
 definição recursiva - todo nó é a raiz de uma subarvore
 
